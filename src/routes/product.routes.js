@@ -3,7 +3,9 @@ const router = express.Router();
 
 const {
   createProduct,
-  getProducts
+  getProducts,
+  updateProduct,
+  deleteProduct
 } = require("../controllers/product.controller");
 
 const protect = require("../middleware/auth.middleware");
@@ -14,5 +16,7 @@ router.get("/", getProducts);
 
 // Admin route
 router.post("/", protect, adminOnly, createProduct);
+router.put("/:id", protect, adminOnly, updateProduct);
+router.delete("/:id", protect, adminOnly, deleteProduct);
 
 module.exports = router;
