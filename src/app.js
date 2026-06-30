@@ -9,7 +9,9 @@ app.use("/api/products", productRoutes);
 
 // routes
 const authRoutes = require("./routes/auth.routes");
+const cartRoutes = require("./routes/cart.routes");
 
 app.use("/api/auth", authRoutes);
+app.use("/api/cart", cartRoutes);
 
 module.exports = app;
