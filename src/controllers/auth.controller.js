@@ -72,22 +72,10 @@ const login = async (req, res) => {
     }
 };
 
-const testDB = async (req, res) => {
-    const User = require("../models/User");
 
-    const user = await User.create({
-        name: "DB Test",
-        email: "dbtest@example.com",
-        password: "123456"
-    });
-
-    res.json(user);
-};
-
-module.exports = { signup, login, testDB };
+module.exports = { signup, login};
 
 module.exports = {
     signup,
     login,
-    testDB
 };
