@@ -62,6 +62,35 @@ const createOrder = async (req, res) => {
   }
 };
 
+// GET LOGGED-IN USER ORDERS
+const getMyOrders = async (req, res) => {
+  try {
+    const orders = await Order.find({ user: req.user.id })
+      .populate("items.product")
+      .sort({ createdAt: -1 });
+
+    res.json(orders);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// GET ALL ORDERS - admin only
+const getAllOrders = async (req, res) => {
+  try {
+    const orders = await Order.find()
+      .populate("user", "name email role")
+      .populate("items.product")
+      .sort({ createdAt: -1 });
+
+    res.json(orders);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
-  createOrder
+  createOrder,
+  getMyOrders,
+  getAllOrders
 };
